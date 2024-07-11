@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Registration Form </title>
+</head>
+<body style="color: orange" bgcolor="black">
+   <h1>User registration form...</h1>
+     <form   method="post" action="Registerform"><br><br>
+     User Name:<input type="text" name="name" required><br><br>
+     Password:<input type="password" name="password" required><br><br>
+     Gender:
+     Male<input type="radio" name="gender" value="Male" required>
+     Female<input type="radio" name="gender" value="Female" required><br><br>
+     Email Id:<input type="email"name="email" required><br><br>
+     Phone Num:<input type="text"name="num" required><br><br>
+     
+ Qualification:
+  <input type="checkbox" id="B-TECH" name="qua" value="B-TECH">
+  <label>B-TECH</label>
+  <input type="checkbox" id="Degree" name="qua" value="Degree ">
+  <label>Degree</label>
+  <input type="checkbox" id="Post Graduate" name="qua" value="Post Graduate">
+  <label>Post Graduate </label><br><br>
+   
+ Courses:
+  <select id="Courses" name="Courses" required multiple>
+    <option value="select" >Select</option>
+    <option value="Java"> Java</option>
+    <option value="Python">Python</option>
+    <option value=".Net">.#Net</option>
+    <option value="Sql">Sql</option>
+    <option value="Html">Html</option>
+  </select><br><br>
+  DOB:<input type="date" name="dob" required><br><br>
+  Address:
+  <textarea name="address" placeholder="enter city"></textarea> 
+  <textarea name="address" placeholder="enter street"></textarea> 
+  <textarea name="address" placeholder="enter pincode"></textarea> 
+  <textarea name="address" placeholder="enter district"></textarea> 
+  <textarea name="address" placeholder="enter state"></textarea> <br><br>
+  
+  Comments: <textarea rows="5" cols="10" name="Comments" placeholder="enter your improvements"></textarea><br><br>
+  <input type="submit" value="submit">
+  
+     </form>
+</body>
+</html>

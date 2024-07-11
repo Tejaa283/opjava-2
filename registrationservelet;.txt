@@ -1,0 +1,84 @@
+package com.sathya.register;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.sql.Date;
+import java.util.List;
+
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+ 
+@WebServlet("/Registerform")
+public class Registerform extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+   
+    public Registerform() {
+        super();
+         }
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	//To get the values by post	 
+		String uname  = request.getParameter("name");
+		String password  = request.getParameter("password");
+		String gender  = request.getParameter("gender");
+        String email = request.getParameter("email");
+        String phone =request.getParameter("num");
+        String[] qualification = request.getParameterValues("qua");
+        String course = request.getParameter("Courses");
+        Date dob =Date.valueOf(request.getParameter("dob"));
+        String[] address = request.getParameterValues("address");
+        String cmmnts = request.getParameter("Comments");
+        
+      //To display on webpage  //To link within the page 
+        response.setContentType("text/html");
+ 
+      //join method is used to convert the array to singel
+        String finalqualification=String.join(", ", qualification);
+        String finaladdress =String.join(", ", address);
+        String finalcourse =String.join(", ", course);
+      
+      //create the user class to create obj
+        Userdetails userdetais=new Userdetails();
+        userdetais.setUsername(uname);
+        userdetais.setPassword(password);
+        userdetais.setGender(gender);
+        userdetais.setEmailid(email);
+        userdetais.setPhonenumber(phone);
+        userdetais.setFinalqualification(finalqualification);
+        userdetais.setFinalcourses(finalcourse);
+        userdetais.setDob(dob);
+        userdetais.setFinaladdress(finaladdress);
+        userdetais.setComments(cmmnts);
+       
+     //to execute the querys
+        UserDao userDao=new UserDao();
+       int result=userDao.saveuser(userdetais);
+    /* // if done properly  
+       PrintWriter writer=response.getWriter();
+       if(result==1) {
+       writer.println("Data insertion succesful");
+	}
+       else {
+    	   writer.println("Data insertion fail");
+       }*/
+	  
+	//capture the response print the response 
+    if(result == 1)
+    {   request.setAttribute("message", "Registration Successful");
+    }
+    else
+    {
+    	request.setAttribute("message", "Registration Fail");
+    }
+    //forward the request jsp page
+    RequestDispatcher dispatcher=request.getRequestDispatcher("/main.jsp?view=register");
+  		dispatcher.include(request, response);   	 
+    
+ }
+	  
+	
+}
